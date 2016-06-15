@@ -1,0 +1,42 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.gone{
+  display: none;
+}
+#toast-new {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999999;
+  text-align: center;
+}
+#toast-new .toast-box {
+  display: inline-block;
+  padding: 30px 60px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+}
+#toast-new .toast-box p.yea:before {
+  content: '';
+  display: inline-block;
+  background: url(../images/icon.png) no-repeat;
+  vertical-align: middle;
+  width: 20px;
+  background-position: 0 -283px;
+  height: 20px;
+  background-size: 200px;
+}
+#toast-new .toast-box p.nay:before {
+  content: '';
+  display: inline-block;
+  background: url(../images/icon.png) no-repeat;
+  vertical-align: middle;
+  width: 20px;
+  background-position: -20px -283px;
+  height: 20px;
+  background-size: 200px;
+}

@@ -1,0 +1,35 @@
+.star-group{
+  margin-top: .77em;
+  margin-bottom: .3em;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #888;
+  font-size: 14px;
+  display: inline-block;
+  .star{
+    margin: 0 5px;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    background: url("../images/icons/comment_start_empty@2x.png") no-repeat center;
+    @include background-size(35px 35px);
+    &.active {
+      background: url("../images/icons/comment_start_clicked@2x.png") no-repeat center;
+      @include background-size(35px 35px);
+    }
+  }
+  .hint {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    color: $text-14;
+    overflow: hidden;
+    margin-left: 5px;
+    font-size: 1.6rem;
+  }
+}
+.praise-qr-code{
+  margin: 0 auto;
+  max-width: 60%;
+}

@@ -1,0 +1,218 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ */
+html{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size:  62.5%;
+  margin: 0 auto;
+  max-width: 600px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  color: $text-1;
+  min-width: 320px;
+  background-color: $bg-color;
+}
+.display-inline-block{
+  display: inline-block!important;;
+}
+
+.width-p-100{
+  width: 100%;
+}
+.width-p-25{
+  width: 25%;
+}
+.height-25{
+  height: 25px;
+}
+.height-80{
+  height: 80px;
+}
+.height-90{
+  height: 90px;
+}
+.line-height-90{
+  line-height: 90px!important;
+}
+.vertical-middle{
+  vertical-align: middle;;
+}
+.color-black-light{
+  color: $text-3!important;
+}
+.color-black-dark{
+  color: $text-1!important;
+}
+.color-black{
+  color: $text-2!important;
+}
+.color-orange{
+  color: $text-6!important;
+}
+.color-green{
+  color: $text-12!important;
+}
+.color-blue{
+  color: $text-11!important;
+}
+.fl{float: left!important;}
+.fr{float: right!important;}
+.clear-fix:after{
+    clear:both;
+    content:".";
+    display:block;
+    height:0;
+    visibility:hidden;
+}
+.border-top{
+  border-top: 1px solid $border-color;
+}
+.border-left{
+  border-left: 1px solid $border-color;
+}
+.border-right{
+  border-right: 1px solid $border-color;
+}
+.border-bottom{
+  border-bottom: 1px solid $border-color;
+}
+.border-bottom-none{
+  border-bottom: none!important;
+}
+.border-radius-none{
+  @include border-radius(0);
+}
+.title-1{
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: $text-1;
+}
+.title-2{
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: $text-2;
+}
+.title-3{
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: $text-3;
+}
+.bg-yellow{
+  background-color: $text-7!important;
+}
+.bg-pink{
+  background-color: $text-8!important;
+}
+.bg-blue{
+  background-color: $text-9!important;
+}
+.bg-green{
+  background-color: $text-10!important;
+}
+.bg-white{
+  background-color: $text-5!important;
+}
+
+.margin-top-5{
+  margin-top: 5px;
+}
+.margin-top-10{
+  margin-top: 10px;
+}
+.margin-top-15{
+  margin-top: 15px;
+}
+.margin-top-20{
+  margin-top: 20px;
+}
+.margin-right-5{
+  margin-right: 5px;
+}
+.margin-right-10{
+  margin-right: 10px;
+}
+.margin-bottom-5{
+  margin-bottom: 5px;
+}
+.margin-bottom-10{
+  margin-bottom: 10px;
+}
+.padding-top-10{
+  padding-top: 10px;
+}
+.padding-top-45{
+  padding-top: 45px;
+}
+
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+
+.text-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.border-round-grey{
+  border: thin solid $border-color;
+  display: inline-block;
+  padding: 2px 10px;
+  @include border-radius(2px);
+}
+.get-btn{
+  padding: 0;
+  width: 60px;
+  margin-top: 20px;
+}
+.text-decoration-none{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.fixed-bottom{
+  position: fixed;
+  margin: 0 auto;
+  max-width: 600px;
+  bottom: 0;
+}
+
+
+.hd {
+  padding: 2em 0;
+  &.spacing {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 3.4rem;
+    color: $text-12;
+    font-weight: 400;
+    margin: 0 15%;
+    &.yellow{
+      color: $text-6;
+    }
+    &.blue{
+      color: $text-10;
+    }
+  }
+
+  .page-desc {
+    text-align: center;
+    color: #888;
+    font-size: 1.4rem;
+  }
+
+}
+

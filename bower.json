@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "description": "web",
+  "main": "",
+  "authors": [
+    "xiufeilu"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "web"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "weui": "~0.4.2",
+    "zepto": "~1.1.6",
+    "jquery": "~2.2.3",
+    "requirejs": "~2.2.0",
+    "r.js": "~2.2.0"
+  }
+}

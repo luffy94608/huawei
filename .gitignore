@@ -1,0 +1,10 @@
+vendor
+node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+public/bower_components
+.env
+_ide_helper.php
+public/release
+*.log
