@@ -20,6 +20,33 @@
                     </div>
                 </div>
             </div>
+
+            @if ($supplier)
+                <br>
+                <br>
+                <h3 class="page-title yellow" style="font-size: 24px;">服务商信息</h3>
+                <div class="bd">
+                    <div class="weui_cells_title">服务商：{{ $supplier->name }}</div>
+                    <div class="weui_cells_title">电话：{{ $supplier->mobile }}</div>
+                </div>
+                <br>
+                <br>
+            @endif
+
+            @if ($feedback)
+                <div class="weui_cells_title">订单进度说明：</div>
+                <div class="weui_cells weui_cells_form">
+                    <div class="weui_cell">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <textarea class="weui_textarea" placeholder="" rows="3" disabled>{{ $feedback->content }}</textarea>
+                            {{--<div class="weui_textarea_counter"><span>0</span>/200</div>--}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
+
             @if ( $order->status == \App\Models\Enums\OrderEnum::ORDER_STATUS_WAITING_SEND )
                 <div class="weui_cells_title text-center color-blue title-1">等待客服分单中</div>
             @elseif ($order->status == \App\Models\Enums\OrderEnum::ORDER_STATUS_ACCEPT)
@@ -31,7 +58,12 @@
             @elseif ($order->status == \App\Models\Enums\OrderEnum::ORDER_STATUS_CLOSE)
                 <div class="weui_cells_title text-center color-blue title-1">订单已关闭</div>
             @endif
+        </div>
 
+
+
+
+        <div class="bd">
 
             @if (in_array($order->status,[\App\Models\Enums\OrderEnum::ORDER_STATUS_ACCOMPLISH,\App\Models\Enums\OrderEnum::ORDER_STATUS_REMARKED]))
                 {{--评价--}}
@@ -62,8 +94,7 @@
                 <div class="weui_cells_title">如果您对本次服务非常满意，您可以扫描下面的二维码对我们的服务人员进行打赏。</div>
                 <div class="weui_cells weui_cells_form">
                     <div class="weui_cell text-center">
-                        <img class="praise-qr-code" src="/images/demo/pic_article_1.jpg">
-
+                        <img class="praise-qr-code" src="{{ 'http://hw-op.hollo.cn:8081'.$supplier->qr_code_url }}">
                     </div>
                 </div>
             @endif

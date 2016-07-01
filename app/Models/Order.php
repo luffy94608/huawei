@@ -23,6 +23,22 @@ class Order extends Model
     }
 
     /**
+     * 获取供应商
+     */
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');
+    }
+
+    /**
+     * 获取供应商
+     */
+    public function feedback()
+    {
+        return $this->hasMany('App\Models\Feedback','oid');
+    }
+
+    /**
      * 获取关联服务
      */
     public function type()

@@ -6,6 +6,7 @@ use App\Http\Builders\OrderBuilder;
 use App\Http\Requests;
 use App\Models\Area;
 use App\Models\Enums\OrderEnum;
+use App\Models\Feedback;
 use App\Models\Order;
 use App\Models\Type;
 use Carbon\Carbon;
@@ -60,14 +61,17 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
 
+        $supplier = $order->supplier;
+        $feedback = Feedback::where('oid',$id)->orderBy('created_at','desc')->first();
         $minutes = OrderEnum::NextOrderRemindMinutes;
         $now = Carbon::now();
-
         $next_remind_seconds = $minutes*60 - ($now->timestamp - strtotime($order->remind_time));
 
         $params = [
             'page'=>'page-detail',
             'order'=>$order,
+            'supplier'=>$supplier,
+            'feedback'=>$feedback,
             'next_remind_seconds'=>$next_remind_seconds ? $next_remind_seconds : 0,
             'current_timestamp'=>$now->timestamp,
         ];
