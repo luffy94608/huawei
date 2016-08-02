@@ -518,7 +518,7 @@
             banSpecial:true,
             title:'真实姓名',
             hasSpecial:function(val){
-                var regular = /^[\u4E00-\u9FA5a-zA-Z\s]+$/;
+                var regular = /^[\u4E00-\u9FA5a-zA-Z0-9\s]+$/;
                 if (regular.test(val)){
                     var regularS = /^（）[！？。，《》{}【】“”·、：；‘’……]+$/;
                     return regularS.test(val);
