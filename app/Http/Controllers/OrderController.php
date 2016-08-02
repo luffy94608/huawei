@@ -33,7 +33,6 @@ class OrderController extends Controller
      */
     public function getList($type = 0)
     {
-//        Auth::logout();
         if ($type == 0) {
             $filter = [OrderEnum::ORDER_STATUS_ACCEPT, OrderEnum::ORDER_STATUS_WAITING_SEND, OrderEnum::ORDER_STATUS_ACCOMPLISH];
         } else {

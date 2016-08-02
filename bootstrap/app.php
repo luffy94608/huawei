@@ -41,6 +41,16 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+/**
+ * Configure Monolog.
+ */
+$app->configureMonologUsing(function(Monolog\Logger $monolog) {
+    $filename = storage_path('logs/laravel-'.php_sapi_name().'.log');
+    $handler = new Monolog\Handler\RotatingFileHandler($filename, config('app.log_max_files', 5));
+    $monolog->pushHandler($handler);
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

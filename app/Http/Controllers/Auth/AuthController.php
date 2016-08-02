@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Login;
 use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -82,6 +83,8 @@ class AuthController extends Controller
             $data = [
                 'url' => $redirectUrl ? $redirectUrl : '/order/list',
             ];
+            $user = Auth::user();
+            \Event::fire(new Login($user));
             return response()->json((new ApiResult(0, ErrorEnum::transform(ErrorEnum::Success), $data))->toJson());
         } else {
             return response()->json((new ApiResult(-1, ErrorEnum::transform(ErrorEnum::UserOrPswError), ''))->toJson());
