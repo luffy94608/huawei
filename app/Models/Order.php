@@ -12,7 +12,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_no','user_id','type_id','area_id','mobile','desc'];
+    protected $fillable = ['order_no','user_id','type_id','area_id','job_id','mobile','desc'];
 
     /**
      * 获取关联区域
