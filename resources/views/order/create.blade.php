@@ -54,6 +54,27 @@
                     </div>
                 </div>
             </div>
+
+            <div class="weui_cells_title"></div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <div class="weui_uploader">
+                            <div class="weui_uploader_hd weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">附件上传</div>
+                                {{--<div class="weui_cell_ft">0/2</div>--}}
+                            </div>
+                            <div class="weui_panel_bd js_file_list">
+
+                            </div>
+                            <div class="weui_uploader_bd">
+                                <div class="weui_uploader_input_wrp js_upload_btn" style="float:none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="weui_cells_tips">客户人员会尽快处理您的服务请求，您可在微信号首页“我的服务”中查看订单状态。</div>
             <div class="weui_btn_area">
                 <a class="weui_btn weui_btn_primary"  id="js_submit">创建</a>

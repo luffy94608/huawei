@@ -24,8 +24,8 @@
         },
         // Use shim for plugins that does not support ADM
         shim: {
-            'string': ['zepto'],
-            'widget': ['zepto','string'],
+            'string': ['jquery'],
+            'widget': ['jquery','string'],
             'base': ['widget'],
             'page-reset': ['base'],
             'page-email': ['base'],

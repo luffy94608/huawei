@@ -21,6 +21,40 @@
                 </div>
             </div>
 
+            @if($order->resources)
+                <div class="weui_cells weui_cells_form">
+                    <div class="weui_cell">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <div class="weui_uploader">
+                                <div class="weui_uploader_hd weui_cell">
+                                    <div class="weui_cell_bd weui_cell_primary">附件</div>
+                                    {{--<div class="weui_cell_ft">0/2</div>--}}
+                                </div>
+                                <div class="weui_panel_bd ">
+                                    @foreach($order->resources as $resource)
+                                        <a href="{{ $resource->url }}" class="weui_media_box weui_media_appmsg" style="position: relative">
+                                            <div class="weui_media_hd">
+                                                <img class="weui_media_appmsg_thumb" src="/images/icon-file@3x.png" alt="">
+                                            </div>
+                                            <div class="weui_media_bd">
+                                                <h4 class="weui_media_title">{{ $resource->name }}</h4>
+                                                <p class="weui_media_desc">{{ $resource->size }}</p>
+                                            </div>
+                                            {{--<div href="javascript:;" class="weui_progress_opr js_cancel" style="position: absolute;top: 35px;;right: 0;">--}}
+                                                {{--<i class="weui_icon_cancel"></i>--}}
+                                            {{--</div>--}}
+                                        </a>
+                                    @endforeach
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
+
+
             @if ($supplier)
                 <br>
                 <br>
@@ -94,7 +128,7 @@
                 <div class="weui_cells_title">如果您对本次服务非常满意，您可以扫描下面的二维码对我们的服务人员进行打赏。</div>
                 <div class="weui_cells weui_cells_form">
                     <div class="weui_cell text-center">
-                        <img class="praise-qr-code" src="{{ 'http://hw-op.hollo.cn:8081'.$supplier->qr_code_url }}">
+                        <img class="praise-qr-code" src="{{ $supplier->qr_code_url }}">
                     </div>
                 </div>
             @endif

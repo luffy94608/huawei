@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Enums\OrderEnum;
 use App\Models\Feedback;
 use App\Models\Order;
+use App\Models\Resource;
 use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
@@ -36,7 +37,7 @@ class OrderController extends Controller
         if ($type == 0) {
             $filter = [OrderEnum::ORDER_STATUS_ACCEPT, OrderEnum::ORDER_STATUS_WAITING_SEND, OrderEnum::ORDER_STATUS_ACCOMPLISH];
         } else {
-            $filter = [OrderEnum::ORDER_STATUS_REMARKED];
+            $filter = [OrderEnum::ORDER_STATUS_REMARKED, OrderEnum::ORDER_STATUS_CLOSE];
         }
         $orders = Order::whereIn('status',$filter)
                     ->orderBy('updated_at', 'desc')
@@ -114,6 +115,7 @@ class OrderController extends Controller
             'area_id'        => 'required',
             'type_id'        => 'required',
             'desc'           => 'required',
+            'resources'           => 'sometimes',
         );
         $this->validate($request, $patternMap);
         $input = $request->only(array_keys($patternMap));
@@ -122,6 +124,11 @@ class OrderController extends Controller
         $input['user_id'] = $user->id;
         $result = Order::create($input);
         if ($result) {
+            if(!empty($input['resources']))
+            {
+                Resource::whereIn('id',$input['resources'])->update(['order_id'=>$result->id]);
+            }
+
             $data = [
                 'url' => '/order/list',
             ];
@@ -221,4 +228,52 @@ class OrderController extends Controller
         $job = (new SendReminderEmail($order));
         $this->dispatch($job);
     }
+
+    /**
+     * 上传文件
+     * @param Request $request
+     */
+    public function postUploadFile(Request $request)
+    {
+        ini_set("max_execution_time", 60*20);
+        $file = \Input::file('file');
+        $path = $file->getRealPath();
+        $name = $file->getClientOriginalName();
+        $upYun = new \UpYun('hollo-photos','hollogogo','hollogogo');
+        $fh = fopen($path, 'r');
+        $newFileName = $this->buildFileName($name);
+        $remotePath =sprintf('/huawei/%s',$newFileName);
+        $upYun->writeFile($remotePath, $fh, true);
+        fclose($fh);
+        $host = 'http://hollo-photos.b0.upaiyun.com';
+        $data = [
+            'name'=>$name,
+            'url'=>$host.$remotePath,
+            'size'=>$this->human_filesize($file->getSize()),
+        ];
+        $resource = Resource::create($data);
+        $data['id'] =  $resource->id;
+        return response()
+                ->json((new ApiResult(0, ErrorEnum::transform(ErrorEnum::Success), $data))
+                ->toJson());
+    }
+
+
+    /**
+     * 生成新文件名
+     * @param $filename
+     * @return mixed
+     */
+    private function buildFileName($filename)
+    {
+        $ip = $_SERVER['SERVER_ADDR'];
+        return sprintf('%s_%d_%d.%s', md5($filename.$ip), microtime(true) * 1000, mt_rand(1111, 9999), pathinfo($filename, PATHINFO_EXTENSION));
+    }
+
+    private function human_filesize($bytes, $decimals = 2) {
+        $sz = 'BKMGTP';
+        $factor = floor((strlen($bytes) - 1) / 3);
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)).@$sz[$factor];
+    }
+
 }

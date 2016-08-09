@@ -39,6 +39,15 @@ class Order extends Model
     }
 
     /**
+     * 获取供应商
+     */
+    public function resources()
+    {
+        return $this->hasMany('App\Models\Resource','order_id');
+    }
+
+
+    /**
      * 获取关联服务
      */
     public function type()

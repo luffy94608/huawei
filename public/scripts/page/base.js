@@ -2,7 +2,7 @@
  * Created by luffy on 16/1/28.
  *  当页面ready的时候，执行回调:
  */
-Zepto(function($){
+$(document).ready(function () {
 
     // .container 设置了 overflow 属性, 导致 Android 手机下输入框获取焦点时, 输入法挡住输入框的 bug
     // 相关 issue: https://github.com/weui/weui/issues/15

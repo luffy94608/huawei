@@ -16,7 +16,8 @@
         "ixudra/curl": "^6.2",
         "aws/aws-sdk-php": "^3.18",
         "pda/pheanstalk": "^3.1",
-        "iron-io/iron_mq": "^4.0"
+        "iron-io/iron_mq": "^4.0",
+        "upyun/sdk": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -48,7 +49,6 @@
         "post-update-cmd": [
             "php artisan optimize",
             "php artisan clear-compiled",
-            "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-root-package-install": [
@@ -59,6 +59,7 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "secure-http": true
     }
 }

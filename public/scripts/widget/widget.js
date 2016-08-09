@@ -203,47 +203,55 @@
             dataType: 'json'});
     };
 
-    $.fn.uploadImage = function(action,data,func){
+    $.fn.uploadImage = function(action,data,func,progressFunc){
         $(this).next('input[type="file"]').remove();
         var input = $(' <input style="display:none;" type="file" name="file"/>');
         var _this = $(this);
         input.change(function(){
-            if(/image/i.test(this.files[0].type)){
-                var xhr = new XMLHttpRequest();
-                _this.data("_sid",'_sid_'+Math.random());
-                var p = _this.position();
-                var _show = $('div></div>').css({"postion":"absolute",'top' : p.top,'left' : p.left,'opacity' : '0.5',"background-color" : '#CCC','-webkit-border-radius':"5px","padding":"5px",'z-index':_this.zIndex + 1}).attr("id",_this.data('_sid'));
-                xhr.upload.onprogress = function(e) {
-                    var ratio = e.loaded / e.total;
-                    $("#" + _this.data("_sid")).html(ratio*100 + "%");
-                };
-                xhr.onload = function(){
-                    if(this.status  == 200){
-                        if(func){
-                            func($.parseJSON(this.responseText).data);
-                        }
-                    }
-                    $("#" + _this.data("_sid")).remove();
-                };
-                xhr.open("POST", action, true);
-                var fd = new FormData();
-                fd.append('image',this.files[0]);
-
-                if (data){
-                    for(var i in data){
-                        fd.append(i, data[i]);
+            var file = this.files[0];
+            var status = true;
+            if(file.size>1024*1024*2){
+                alert('文件大小不能超过2M');
+                status =false;
+            }
+            if(!status){
+                $(this).click();
+                return false;
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.upload.onprogress = function(e) {
+                var ratio = e.loaded / e.total;
+                var percent = ratio*100;
+                if($.isFunction(progressFunc)){
+                    progressFunc(percent);
+                }
+                $("#" + _this.data("_sid")).html(percent + "%");
+            };
+            xhr.onload = function(){
+                if(this.status  == 200){
+                    if(func){
+                        func($.parseJSON(this.responseText).data);
                     }
                 }
+            };
+            xhr.open("POST", action, true);
+            var fd = new FormData();
+            fd.append('file',this.files[0]);
 
-                xhr.send(fd);
-            }else{
-                alert('请选择图片');
-                $(this).click();
+            if (data){
+                for(var i in data){
+                    fd.append(i, data[i]);
+                }
             }
+
+            xhr.send(fd);
         });
         $(this).after(input);
-        input.click();
+        $(this).unbind().bind('click',function () {
+            $(this).next('input').click();
+        });
     };
+
 
     Date.prototype.Format = function(fmt){ //author: meizz
         var o = {
@@ -682,4 +690,4 @@
         return 1;
     };
 
-})(Zepto);
+})($);
