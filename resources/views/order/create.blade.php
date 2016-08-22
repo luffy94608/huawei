@@ -68,7 +68,11 @@
 
                             </div>
                             <div class="weui_uploader_bd">
-                                <div class="weui_uploader_input_wrp js_upload_btn" style="float:none;"></div>
+                                <div class="weui_uploader_input_wrp js_upload_btn" style="float:none;">
+                                    <div class="weui_uploader_status gone" style=" width: 100%;height: 100%;opacity: 0.7;z-index: 10;background: black;">
+                                        <div class="weui_uploader_status_content">50%</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

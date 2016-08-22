@@ -104,6 +104,20 @@
                     '           </div> ' +
                     '       </a>';
                 $('.js_file_list').append(html);
+            },function (radio) {
+                radio = parseInt(radio);
+                console.log(radio);
+                var obj = $('.weui_uploader_status');
+                var content = $('.weui_uploader_status_content',obj)
+                if(radio>0 && radio<100){
+                    obj.removeClass('gone');
+                    content.html(radio)
+                }else{
+                    setTimeout(function () {
+                        obj.addClass('gone');
+                    },300);
+                }
+
             });
 
             $(document).on('click','.js_cancel',function () {
